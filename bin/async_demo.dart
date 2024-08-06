@@ -6,25 +6,34 @@
 // 3 caso o email ou senha sejão inválidos, printe a mensagem de erro. 
 
 
-void main() {
-String email = 'email@email.com';
-String senha = '123';
-login(email, senha);
+void main() async {
 
-Future<String> future = login (email, senha);
-future.then((token)  {
+try{
 
-  final futureSaldo = consultarSaldo(token);
-  futureSaldo.then((num saldo){
+    String token = await login ("email@email.com", "123");
+    num saldo = await consultarSaldo(token);
+    print(saldo);
+  }catch (error) {
+    print(error);
+  }
+// String email = 'email@email.com';
+// String senha = '123';
+// login(email, senha);
 
-  print(saldo);
-  });
+// Future<String> future = login (email, senha);
+// future.then((token)  {
 
-}).catchError((error){
-  print(error);
-});
+//   final futureSaldo = consultarSaldo(token);
+//   futureSaldo.then((num saldo){
 
-// print (consultarSaldo(token));
+//   print(saldo);
+//   });
+
+// }).catchError((error){
+//   print(error);
+// });
+
+// // print (consultarSaldo(token));
 
 }
 
